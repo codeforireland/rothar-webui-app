@@ -6,11 +6,12 @@ $(document).ready(function() {
     		  		$.each(jd, function( index, value ) {
     		  			list.append(
     		  			'<li>' 
-    		  			+ value.description
-    		  			+ ' <a href="bike_edit.html?assetId='+value.assetId+'">edit</a>'
-    		  			+ ' <a href="report_show.html?assetId='+value.assetId+'">reports</a>'
+    		  			+ value.description + ' [status = ' + value.status + ', id: ' + value.uuid +']'
+    		  			+ ' <a href="bike_edit.html?assetId='+value.assetId+'&userId='+value.userId+'">edit</a>'
+    		  			+ ' <a href="report_list.html?assetId='+value.assetId+'&userId='+value.userId+'">reports</a>'
     		  			);
 	        	  });
           	});
       });
 });
+
