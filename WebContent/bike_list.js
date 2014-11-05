@@ -14,9 +14,14 @@ $(document).ready(
 					$('table tr:last').after(
 							'<tr>'
 							+ '<td>' + bike.uuid + '</td>' 
-							+ '<td>' + bike.description + '</td>' 
-							+ '<td><a class="btn btn-default" id="button-reports" href="report_list.html?assetId=' + bike.assetId + '">Reports</a></td>'
-							+ '<td><a class="btn btn-default" id="button-edit" href="bike_edit.html?assetId=' + bike.assetId + '">Edit</a></td>'
+							+ '<td>' + bike.description + '</td>'
+							+ '<td>' + bike.status + '</td>'
+							+ '<td><a class="btn btn-default" id="button-reports" href="report_list.html'
+							+'?assetId=' + bike.assetId 
+							+ '&&userId=' + userId + '">Reports</a></td>'
+							+ '<td><a class="btn btn-default" id="button-edit" href="bike_edit.html'
+							+ '?assetId=' + bike.assetId
+							+ '&&userId=' + userId + '">Edit</a></td>'
 							+ '</tr>');
 				});
 			}) .done(function(bikes) {
