@@ -18,10 +18,10 @@ $(document).ready(
 							+ '<td>' + bike.status + '</td>'
 							+ '<td><a class="btn btn-default" id="button-reports" href="report_list.html'
 							+'?assetId=' + bike.assetId 
-							+ '&&userId=' + userId + '">Reports</a></td>'
+							+ '&userId=' + userId + '">Reports</a></td>'
 							+ '<td><a class="btn btn-default" id="button-edit" href="bike_edit.html'
 							+ '?assetId=' + bike.assetId
-							+ '&&userId=' + userId + '">Edit</a></td>'
+							+ '&userId=' + userId + '">Edit</a></td>'
 							+ '</tr>');
 				});
 			}) .done(function(bikes) {
