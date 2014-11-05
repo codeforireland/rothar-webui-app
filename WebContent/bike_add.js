@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	var userId = getURLParameter('userId');
-	$("#button").attr("href", 'bike_list.html?userId=' + userId);
+	/*$("#button").attr("href", 'bike_list.html?userId=' + userId);*/
 	$('#button').on('click', function(e) {
+		window.location.href = 'bike_list.html?userId='+userId;
 		addBike(userId);    
 	});
 });
