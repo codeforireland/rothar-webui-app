@@ -24,7 +24,7 @@ $(document).ready(
 							+ '&userId=' + userId + '">Edit</a></td>'
 							+ '</tr>');
 				});
-			}) .done(function(bikes) {
+			}).done(function(bikes) {
 				$('#loading').hide();			
 				if(bikes.length === 0) {
 					$('#table').hide();

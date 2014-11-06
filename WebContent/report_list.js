@@ -1,29 +1,39 @@
 $(document).ready(function() {
 	var assetId = getURLParameter('assetId');
 	var userId = getURLParameter('userId');
-	$.getJSON('http://api.dev.rothar.appbucket.eu/v2/users/'+userId+'/assets/' + assetId + '/reports',
-			function(jd) {
-				var list = $('#list');
-				$.each(jd, function( index, value ) {
-					list.append(
-					'<li>' 
-    		  			+ value.created
-    		  			+ '<img src="https://maps.googleapis.com/maps/api/staticmap?center='+value.latitude+','+value.longitude+'&zoom=16&size=200x200&markers=color:blue%7Clabel:S%7C'+value.latitude+','+value.longitude+'">'
-    		  			);
-	        	  });
-          	});
-
+	$('#table').hide();			
+	$('#no_reports').hide();
+	$('#loading').show();
+	loadReports(assetId, userId);
 });
 
-function getURLParameter(sParam) {
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
-            return sParameterName[1];
-        }
-    }
-};
+function loadReports(bikeId, ownerId) {
+	$.getJSON('http://api.dev.rothar.appbucket.eu/v2/users/' + ownerId + '/assets/' + bikeId + '/reports' + '?limit=5',
+			function(bikes) {
+				$.each(bikes, function(index, bike) {				
+					$('table tr:last').after(
+							'<tr>'
+							+ '<td>' + formatDate(bike.created) + '</td>'
+							+ '<td><img src="https://maps.googleapis.com/maps/api/staticmap?center='+bike.latitude+','+bike.longitude+'&zoom=16&size=400x100&markers=color:blue%7Clabel:S%7C'+bike.latitude+','+bike.longitude+'"></td>'							
+							+ '</tr>');
+				});
+    })
+    .fail(function(result, status, xhttp) {
+		var serverResponse = $.parseJSON(result.responseText);
+		 alert("Can't retrieve reports: " + serverResponse.clientMessage);
+	}).done(function(bikes) {
+		$('#loading').hide();			
+		if(bikes.length === 0) {
+			$('#table').hide();
+			$('#no_reports').show();
+		} else {
+			$('#table').show();
+			$('#no_reports').hide();
+		}
+	});
+}
+
+function formatDate(timeStamp) {
+	var d = new Date(timeStamp);
+	return d;
+}
