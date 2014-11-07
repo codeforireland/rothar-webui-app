@@ -1,14 +1,17 @@
 $(document).ready(function() {
 	var assetId = getURLParameter('assetId');
 	var userId = getURLParameter('userId');
+	var offset = parseInt(getURLParameter('offset')) || 0;
+	$('#button-newer').on('click', onNextButtonClick);
+	$('#button-older').on('click', onPreviousButtonClick);	
 	$('#table').hide();			
 	$('#no_reports').hide();
 	$('#loading').show();
-	loadReports(assetId, userId);
+	loadReports(assetId, userId, offset);
 });
 
-function loadReports(bikeId, ownerId) {
-	$.getJSON('http://api.dev.rothar.appbucket.eu/v2/users/' + ownerId + '/assets/' + bikeId + '/reports' + '?limit=5',
+function loadReports(bikeId, ownerId, offset) {
+	$.getJSON('http://api.dev.rothar.appbucket.eu/v2/users/' + ownerId + '/assets/' + bikeId + '/reports' + '?limit=5&offset=' + offset,
 			function(bikes) {
 				$.each(bikes, function(index, bike) {				
 					$('table tr:last').after(
@@ -36,4 +39,20 @@ function loadReports(bikeId, ownerId) {
 function formatDate(timeStamp) {
 	var d = new Date(timeStamp);
 	return d;
+}
+
+function onNextButtonClick() {
+	var offset = parseInt(getURLParameter('offset')) || 0;
+	offset = offset + 5;
+	var assetId = getURLParameter('assetId');
+	var userId = getURLParameter('userId');	
+	window.location.href = 'report_list.html?userId='+userId+'&assetId='+assetId+'&offset='+offset;
+}
+
+function onPreviousButtonClick() {
+	var offset = parseInt(getURLParameter('offset')) || 0;
+	offset = offset - 5;
+	var assetId = getURLParameter('assetId');
+	var userId = getURLParameter('userId');
+	window.location.href = 'report_list.html?userId='+userId+'&assetId='+assetId+'&offset='+offset;	
 }
