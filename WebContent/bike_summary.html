@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bikes</title>
+<title>Add</title>
 
 <!-- Bootstrap -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -18,29 +18,34 @@
 </head>
 <body>
 
-	<h3 class="text-center">List of your bikes</h3>
+	<h3 class="text-center">Bike details</h3>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">			
-				<table class="table" id="table">
-					<tr>
-						<th>Tag UUID</th>
-						<th>Tag Major Id</th>
-						<th>Tag Minor Id</th>
-						<th>Description</th>
-						<th>Status</th>
-						<th> </th>
-						<th> </th>
-					</tr>					
-				</table>
-				<p class="text-center" id="loading">...</p>
-				<p class="text-center" id="no_bikes">You have no registered bikes</p>			
+			<div class="col-md-12">
+				<form role="form">
+					<div class="form-group">
+						<label for="description">Tag UUID</label>
+						<input type="text" disabled="disabled"
+							class="form-control" id="uuid"/>
+					</div>
+					<div class="form-group">
+						<label for="description">Tag Major id</label>
+						<input type="text" disabled="disabled"
+							class="form-control" id="major_id"/>
+					</div>
+					<div class="form-group">
+						<label for="description">Tag Minor id</label>
+						<input type="text" disabled="disabled"
+							class="form-control" id="minor_id"/>
+					</div>
+					<div class="form-group">
+						<label for="description">Bike description</label>
+						<textarea disabled="disabled"
+							class="form-control" id="description"></textarea>
+					</div>										
+					<a class="btn btn-default" id="button">OK</a>
+				</form>
 			</div>			
-		</div>
-		<div class="row">
-			<div class="col-md-12 text-center">
-				<a class="btn btn-default" id="button-add" >Add bike</a>
-			</div>
 		</div>
 	</div>
 
@@ -48,7 +53,7 @@
 	<script src="jquery/jquery-2.1.1.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="bike_list.js"></script>
+	<script src="bike_summary.js"></script>
 	<script src="tools.js"></script>
 	<script src="conf/settings.js"></script>
 </body>

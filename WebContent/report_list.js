@@ -21,7 +21,7 @@ function loadReports(bikeId, ownerId, offset) {
 							'<tr>'
 							+ '<td>' + formatDate(bike.created) + '</td>'
 							+ '<td><img src="https://maps.googleapis.com/maps/api/staticmap?center='+bike.latitude+','+bike.longitude+'&zoom=16&size=400x100&markers=color:blue%7Clabel:S%7C'+bike.latitude+','+bike.longitude+'"></td>'
-							+ '<td><p id="address_at_'+bike.latitude+'-'+bike.longitude+'">...</p></td>'
+							/*+ '<td><p id="address_at_'+bike.latitude+'-'+bike.longitude+'">...</p></td>'*/
 							+ '</tr>');
 					/*findAddress(bike.latitude, bike.longitude);*/
 				});

@@ -6,12 +6,9 @@ $(document).ready(function() {
 });
 
 function addBike(userId) {
-	var descriptionValue = $('#description').val();	
-	var uuIdValue = $('#tagId').val();
-	var majorIdValue = $('#majorId').val();
-	var minorIdValue = $('#minorId').val();
-	var urlValue = 'http://api.dev.rothar.appbucket.eu/v2/users/' + userId + '/assets';		
-	var dataValue = {"uuid":uuIdValue, "minor":minorIdValue, "major":majorIdValue, "description":descriptionValue};	
+	var descriptionValue = $('#description').val();		
+	var urlValue = BACKEND_URL + '/v3/users/' + userId + '/assets';		
+	var dataValue = {"description":descriptionValue};	
 	$.ajax({
 			type: "POST",
 			url: urlValue,
@@ -20,8 +17,8 @@ function addBike(userId) {
 			data: JSON.stringify(dataValue),		
 			contentType: "application/json; charset=UTF-8"
 		})
-		.success(function(msg) {
-			window.location.href = 'bike_list.html?userId='+userId;
+		.success(function(result, status, xhttp) {
+			window.location.href = 'bike_summary.html?userId=' + result.userId + '&assetId=' + result.assetId;
 		})
 		.fail(function(result, status, xhttp) {
 			var serverResponse = $.parseJSON(result.responseText);

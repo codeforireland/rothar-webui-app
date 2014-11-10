@@ -8,12 +8,14 @@ $(document).ready(
 			$("#button-add").attr("href", 'bike_add.html?userId=' + userId);
 			
 			var userId = getURLParameter('userId');
-			$.getJSON('http://api.dev.rothar.appbucket.eu/v2/users/'
+			$.getJSON(BACKEND_URL + '/v2/users/'
 					+ userId + '/assets', function(bikes) {
 				$.each(bikes, function(index, bike) {				
 					$('table tr:last').after(
 							'<tr>'
-							+ '<td>' + bike.uuid + '</td>' 
+							+ '<td>' + bike.uuid + '</td>'
+							+ '<td>' + bike.major + '</td>'
+							+ '<td>' + bike.minor + '</td>'
 							+ '<td>' + bike.description + '</td>'
 							+ '<td>' + bike.status + '</td>'
 							+ '<td><a class="btn btn-default" id="button-reports" href="report_list.html'
